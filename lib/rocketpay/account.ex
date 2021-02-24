@@ -16,9 +16,9 @@ defmodule Rocketpay.Account do
 
     timestamps()
   end
-
-  def changeset(params) do
-    %__MODULE__{}
+# \\ eh um default caso passemos uma struct ele a vai utilizar
+  def changeset(struct \\ %__MODULE__{}, params) do
+    struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> check_constraint(:balance, name: :balance_must_be_positive_or_zero)
